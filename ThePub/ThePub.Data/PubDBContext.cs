@@ -28,6 +28,10 @@ namespace ThePub.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new MealOrderConfiguration());
+            modelBuilder.ApplyConfiguration(new MealSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new MealTypesSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserSeedConfiguration());
         }
     }
 }
