@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -43,6 +44,14 @@ namespace ThePub.Application.Controllers
             }
 
             return base.View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await this.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return base.RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         private async Task Login(UserDTO user)
