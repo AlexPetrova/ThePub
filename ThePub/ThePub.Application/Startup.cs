@@ -24,6 +24,8 @@ namespace ThePub.Application
         {
             services.AddControllersWithViews();
             
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
             services.AddDbContext<PubDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
@@ -48,7 +50,13 @@ namespace ThePub.Application
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.UseEndpoints(endpoints =>
             {
