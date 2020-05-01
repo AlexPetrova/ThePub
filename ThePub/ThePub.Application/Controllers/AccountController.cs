@@ -25,6 +25,8 @@ namespace ThePub.Application.Controllers
             return base.View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -61,7 +63,7 @@ namespace ThePub.Application.Controllers
             {
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim("FullName", user.FullName),
-                new Claim(ClaimTypes.Role, "Administrator"),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var claimsIdentity = new ClaimsIdentity(
