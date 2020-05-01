@@ -9,7 +9,7 @@ using ThePub.Data;
 
 namespace ThePub.Data.Migrations
 {
-    [DbContext(typeof(PubDBContext))]
+    [DbContext(typeof(PubDbContext))]
     [Migration("20200501112014_SeedData")]
     partial class SeedData
     {

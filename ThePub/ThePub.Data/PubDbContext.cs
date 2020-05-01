@@ -4,9 +4,9 @@ using ThePub.Data.Models;
 
 namespace ThePub.Data
 {
-    public class PubDBContext : DbContext
+    public class PubDbContext : DbContext
     {
-        public PubDBContext(DbContextOptions<PubDBContext> options)
+        public PubDbContext(DbContextOptions<PubDbContext> options)
             : base(options)
         {
         }

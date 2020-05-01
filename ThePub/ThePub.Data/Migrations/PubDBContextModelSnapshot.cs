@@ -8,7 +8,7 @@ using ThePub.Data;
 
 namespace ThePub.Data.Migrations
 {
-    [DbContext(typeof(PubDBContext))]
+    [DbContext(typeof(PubDbContext))]
     partial class PubDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

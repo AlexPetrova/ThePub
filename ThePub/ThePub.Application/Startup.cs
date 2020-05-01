@@ -27,7 +27,9 @@ namespace ThePub.Application
         {
             services.AddControllersWithViews();
             services.AddDbContext<PubDBContext>(options =>
+            services.AddDbContext<PubDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
