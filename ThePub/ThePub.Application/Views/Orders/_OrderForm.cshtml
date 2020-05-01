@@ -1,0 +1,24 @@
+﻿@model OrderFormViewModel
+@{
+    ViewData["Title"] = "_OrderForm";
+}
+
+<form>
+    <div class="row">
+        <div class="col-md-2"><b>@Model.Day</b></div>
+        <input type="hidden" class="day-of-week" asp-for="Date" />
+        @foreach (var mealType in Model.MealTypes)
+        {
+            <div class="col-md-2 meal-group">
+                <input type="hidden" asp-for="@mealType.Id" />
+
+                <label asp-for="@mealType.SelectedMealId"><i>@mealType.Name?</i></label>
+                <select asp-for="@mealType.SelectedMealId" asp-items="@mealType.Meals" class="form-control"></select>
+            </div>
+        }
+
+        <div class="col-md-1">
+            <button type="submit" class="btn btn-success order-button">Order</button>
+        </div>
+    </div>
+</form>
