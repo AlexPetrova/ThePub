@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using ThePub.Data;
 using ThePub.Services.Contracts;
 using ThePub.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ThePub.Application
 {
@@ -22,13 +23,12 @@ namespace ThePub.Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
             services.AddDbContext<PubDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
             services.AddTransient<IUserService, UserService>();
         }
 
