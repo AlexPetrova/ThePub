@@ -24,12 +24,14 @@ namespace ThePub.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                .AddRazorRuntimeCompilation();
+                .AddRazorRuntimeCompilation()
+                .AddNewtonsoftJson();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
             services.AddDbContext<PubDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IMealTypeService, MealTypeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
