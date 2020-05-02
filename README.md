@@ -4,6 +4,10 @@
 * Apply migrations by running `update-database` in the `Package Manager Console`
 * You are ready to go :) 
 
+## Login credentials 
+**user**: *gosho_goshev* **pass**: *Asd123* **role**: *Ordinary*  
+**user**: *pesho_peshov* **pass**: *Asd123* **role**: *KnowsTheRightPeople*
+
 ## Missing functionality
 * Validation if the user has already made an order for the day.
 * Cancel order.
