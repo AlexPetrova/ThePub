@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThePub.Data;
 
 namespace ThePub.Data.Migrations
 {
     [DbContext(typeof(PubDbContext))]
-    partial class PubDBContextModelSnapshot : ModelSnapshot
+    [Migration("20200501195240_OrderDeclinedCol")]
+    partial class OrderDeclinedCol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

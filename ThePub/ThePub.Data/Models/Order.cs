@@ -17,6 +17,8 @@ namespace ThePub.Data.Models
         [Column(TypeName = "date")]
         public DateTime OrderDate { get; set; }
 
+        public bool IsDeclined { get; set; }
+
         public ICollection<MealOrders> MealOrders { get; set; }
     }
 }

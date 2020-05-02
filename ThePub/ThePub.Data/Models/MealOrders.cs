@@ -9,7 +9,5 @@
         public int MealId { get; set; }
 
         public Meal Meal { get; set; }
-
-        public bool IsDeclined { get; set; }
     }
 }
