@@ -2,10 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using ThePub.Application.Extensions;
 using ThePub.Application.Models.OrderViewModels;
 using ThePub.Data;
+using ThePub.Data.DTO;
+using ThePub.Services.Contracts;
 
 namespace ThePub.Application.Controllers
 {
@@ -47,5 +50,21 @@ namespace ThePub.Application.Controllers
             return base.View(weekView);
         }
 
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Make([FromBody] PlaceOrderViewModel order)
+        {
+            this.orderService.Create(new CreateOrderDTO
+            {
+                UserId = base.User.GetUserId(),
+                Meals = order.Meals
+                    .Select(m => new MealOrdersDTO { MealTypeId = m.MealTypeId, MealId = m.MealId })
+                    .ToList(),
+                OrderDate = order.Date
+            });
+
+            return Ok();
+        }
     }
 }
