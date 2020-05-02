@@ -11,5 +11,7 @@
         public const int OrdinaryRoleId = 1;
 
         public const int KnowsTheRightPeopleRoleId = 2;
+
+        public const string KnowsTheRightPeopleRoleName = "KnowsTheRightPeople";
     }
 }
