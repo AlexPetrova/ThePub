@@ -1,3 +1,9 @@
+## Setup and run
+* You need to have installed and running SQL server 
+* Add you connection string in the placeholder in `appsettings.json`
+* Apply migrations by running `update-database` in the `Package Manager Console`
+* You are ready to go :) 
+
 ## Missing functionality
 * Validation if the user has already made an order for the day.
 * Cancel order.
