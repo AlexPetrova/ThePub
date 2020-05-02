@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using ThePub.Data.DTO;
 
-public interface IMealTypeService
+namespace ThePub.Services.Contracts
 {
-    IReadOnlyCollection<MealTypeDTO> GetAllMealTypes();
+    public interface IMealTypeService
+    {
+        IReadOnlyCollection<MealTypeDTO> GetAllMealTypes(string userRole);
+    }
 }

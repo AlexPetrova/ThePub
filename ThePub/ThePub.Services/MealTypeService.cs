@@ -2,6 +2,7 @@
 using System.Linq;
 using ThePub.Data;
 using ThePub.Data.DTO;
+using ThePub.Services.Contracts;
 
 namespace ThePub.Services
 {
@@ -14,9 +15,9 @@ namespace ThePub.Services
             this.context = context;
         }
 
-        public IReadOnlyCollection<MealTypeDTO> GetAllMealTypes()
+        public IReadOnlyCollection<MealTypeDTO> GetAllMealTypes(string userRole)
         {
-            return this.context.MealTypes
+            var mealTypes = this.context.MealTypes
                 .Select(mt => new MealTypeDTO
                 {
                     Id = mt.Id,
@@ -26,6 +27,13 @@ namespace ThePub.Services
                         .ToList()
                 })
                 .ToList();
+
+            if (userRole == Constants.KnowsTheRightPeopleRoleName)
+            {
+                mealTypes.Add(mealTypes.First(x => x.Id == Constants.DessertMealTypeId));
+            }
+
+            return mealTypes;
         }
     }
 }

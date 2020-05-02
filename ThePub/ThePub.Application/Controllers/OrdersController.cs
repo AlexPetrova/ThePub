@@ -12,17 +12,20 @@ namespace ThePub.Application.Controllers
     public class OrdersController : Controller
     {
         private readonly IMealTypeService mealTypeService;
-
-        public OrdersController(IMealTypeService mealTypeService)
+        private readonly IOrderService orderService;
+        public OrdersController(
+            IMealTypeService mealTypeService,
+            IOrderService orderService)
         {
             this.mealTypeService = mealTypeService;
+            this.orderService = orderService;
         }
 
         [Authorize]
         public IActionResult Index()
         {
             var mealTypes = this.mealTypeService
-                .GetAllMealTypes()
+                .GetAllMealTypes(base.User.GetUserRole())
                 .Select(mealType => new MealTypeViewModel
                 {
                     Id = mealType.Id,
@@ -31,11 +34,6 @@ namespace ThePub.Application.Controllers
                         .Select(meal => new SelectListItem(meal.Name, meal.Id.ToString()))
                 })
                 .ToList();
-
-            if(base.User.IsInRole("KnowsTheRightPeople"))
-            {
-                mealTypes.Add(mealTypes.First(x => x.Id == Constants.DessertMealTypeId));
-            }
 
             var today = (int)DateTime.Now.DayOfWeek;
             var startingDay = DateTime.Now.AddDays(-today);
